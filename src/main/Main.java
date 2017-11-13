@@ -14,16 +14,16 @@ public class Main
     {
         int nbProcess = 0;
         Scanner sc = new Scanner(System.in);
-        System.out.print("How much process do you want : ");
+        System.out.print("Enter the Number of Processes : ");
         nbProcess = sc.nextInt();
 
         for(int i = 0;i<nbProcess;i++)
         {
             OPS p = new OPS();
             p.setProcess(i);
-            System.out.print("What is the arriTal : ");
+            System.out.print("Enter Process "+i+"'s Arrival Time : ");
             p.setArrival(sc.nextInt());
-            System.out.print("What is the Burst Time : ");
+            System.out.print("Enter Process "+i+"'s Burst Time : ");
             p.setBurst_Time(sc.nextInt());
             T.insertElementAt(p,i);
         }
@@ -34,7 +34,7 @@ public class Main
         float cpt1 = 0;
         int cpt =0;
         float m = T.size();
-        System.out.println("Process | ArriTal |  Burst Time  | Start | Wait | Finish | TA");
+        System.out.println("Process | Arrival |  Burst       | Start | Wait | Finish | TA");
         for(int i = 0;i<m;i++)
         {
             System.out.println(T.get(i).GetProcess() +"         "+T.get(i).GetArrival()  +
@@ -43,8 +43,8 @@ public class Main
             cpt += T.get(i).GetTA();
             cpt1+= T.get(i).GetWait();
         }
-        System.out.println("\n\nATerage turnaround time is "+ cpt/m);
-        System.out.println("ATerage waiting time is : "+cpt1/m);
+        System.out.println("\n\nAverage turnaround time is "+ cpt/m);
+        System.out.println("Average waiting time is : "+cpt1/m);
     }
     public static void Calculate1_2_3(Vector <OPS> T)// this method calculate the board data for exercice 1,2 and 3
     {
@@ -227,7 +227,7 @@ public class Main
         int Q =0;
         Vector <OPS> T = new  Vector<OPS>();
         Scanner sc = new Scanner(System.in);
-        System.out.print("1.FCFS\n2.SJF\n3.SRTF\n4.RR\n5.Quit\n\nYour choice : ");
+        System.out.print("Choose you Scheduling algorithm. \n1. FCFS\n2. SJF\n3. SRTF\n4. RR\n5.Quit\nEnter the number to select the algorithm :\n");
         choice = sc.nextInt();
         init_T(T);
         switch(choice)
