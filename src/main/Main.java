@@ -10,7 +10,7 @@ import java.lang.*;
 
 public class Main
 {
-    public static Vector <OPS> init_T(Vector <OPS> T)//this method is to initialize the Vector by the user
+    public static Vector <OPS> init_T(Vector <OPS> T)
     {
         int nbProcess = 0;
         Scanner sc = new Scanner(System.in);
@@ -29,7 +29,7 @@ public class Main
         }
         return T;
     }
-    public static void Print(Vector <OPS> T)// this method permit to print the board calculated
+    public static void Print(Vector <OPS> T)
     {
         float cpt1 = 0;
         int cpt =0;
@@ -46,7 +46,7 @@ public class Main
         System.out.println("\n\nAverage turnaround time is "+ cpt/m);
         System.out.println("Average waiting time is : "+cpt1/m);
     }
-    public static void Calculate1_2_3(Vector <OPS> T)// this method calculate the board data for exercice 1,2 and 3
+    public static void Calculate1_2_3(Vector <OPS> T)
     {
 
         for (int i =0; i<T.size();i++)
@@ -62,14 +62,14 @@ public class Main
                 T.get(i).setStart(T.get(i-1).GetFinish());
 
             }
-            T.get(i).setFinish(T.get(i).GetStart()+T.get(i).GetBurst_Time());// it's where i calculate the waiting time, the finish and the turnaround time
-            T.get(i).setTA(T.get(i).GetFinish() - T.get(i).GetArrival());//TA = Finish(Exit) - ArriTal time
-            T.get(i).setWait(T.get(i).GetTA()-T.get(i).GetBurst_Time());//Waiting time = TurnaroudTime - BurstTime
+            T.get(i).setFinish(T.get(i).GetStart()+T.get(i).GetBurst_Time());
+            T.get(i).setTA(T.get(i).GetFinish() - T.get(i).GetArrival());
+            T.get(i).setWait(T.get(i).GetTA()-T.get(i).GetBurst_Time());
             if(T.get(i).GetWait() <0) T.get(i).setWait(0);
         }
     }
 
-    public static Vector <OPS> T_orderFCFS(Vector <OPS> T)// This function is to order by arriTal time
+    public static Vector <OPS> T_orderFCFS(Vector <OPS> T)
     {
         for(int j = 0;j<T.size();j++)
         {
@@ -90,7 +90,7 @@ public class Main
         return T;
     }
 
-    public static Vector <OPS> T_orderSJF(Vector <OPS> T)// This function permit to put the smaller arriTal in first and then order by BurstTime
+    public static Vector <OPS> T_orderSJF(Vector <OPS> T)
     {
         int cpt = 0;
         for(int j = 0;j<T.size();j++)
@@ -135,7 +135,7 @@ public class Main
         return T;
     }
 
-    public static void T_OrderSRTN(Vector <OPS> T,int Q)// This function (Exercice 3) use the order function of the Second exercice but with a quantum
+    public static void T_OrderSRTN(Vector <OPS> T,int Q)
     {
         int cpt = 0;
         int sz = T.size();
@@ -145,17 +145,17 @@ public class Main
 
         do {
 
-            T.get(cpt).setBurst_Time(T.get(cpt).GetBurst_Time()-Q);// Burst Time = Burst TIme - Quantum
+            T.get(cpt).setBurst_Time(T.get(cpt).GetBurst_Time()-Q);
 
             if(T.get(cpt).GetBurst_Time()<=0)
             {
 
-                tmp = Math.abs(T.get(cpt).GetBurst_Time());// We take the absolute Talue of BurstTime - Q
+                tmp = Math.abs(T.get(cpt).GetBurst_Time());
                 T.get(cpt).setBurst_Time(0);
                 cpt++;
                 if(cpt == sz)
                 {
-                    System.out.println("Final Waiting time(The turnaround is already good) : ATerage waiting time is : "+(float)T.get(sz-1).GetFinish()/sz);
+                    System.out.println(" Average waiting time is : "+(float)T.get(sz-1).GetFinish()/sz);
                     break;
                 }
                 T.get(cpt).setBurst_Time(T.get(cpt).GetBurst_Time()-tmp);
@@ -184,7 +184,7 @@ public class Main
                 T.get(index).setWait(T.get(index).GetStart() - T.get(index).GetArrival()+countW[index]);
                 index++;
                 cpt++;
-                System.out.println("I'm in the condition!"+index);
+                System.out.println(index);
                 Print(T);
                 continue;
             }
