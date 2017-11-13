@@ -1,51 +1,15 @@
-
 package main;
 import java.util.*;
 import java.lang.*;
 
 /**
  *
- * @author timy
+ * @author Timothee Marguier
  */
 
 public class Main
 {
-    public static Vector <OPS> init_T(Vector <OPS> T)
-    {
-        int nbProcess = 0;
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Enter the Number of Processes : ");
-        nbProcess = sc.nextInt();
 
-        for(int i = 0;i<nbProcess;i++)
-        {
-            OPS p = new OPS();
-            p.setProcess(i);
-            System.out.print("Enter Process "+i+"'s Arrival Time : ");
-            p.setArrival(sc.nextInt());
-            System.out.print("Enter Process "+i+"'s Burst Time : ");
-            p.setBurst_Time(sc.nextInt());
-            T.insertElementAt(p,i);
-        }
-        return T;
-    }
-    public static void Print(Vector <OPS> T)
-    {
-        float cpt1 = 0;
-        int cpt =0;
-        float m = T.size();
-        System.out.println("Process | Arrival |  Burst       | Start | Wait | Finish | TA");
-        for(int i = 0;i<m;i++)
-        {
-            System.out.println(T.get(i).GetProcess() +"         "+T.get(i).GetArrival()  +
-                    "           "+ T.get(i).GetBurst_Time() +"           " + T.get(i).GetStart()+"        "
-                    +T.get(i).GetWait()+"      "+T.get(i).GetFinish()+"      "+T.get(i).GetTA()  );
-            cpt += T.get(i).GetTA();
-            cpt1+= T.get(i).GetWait();
-        }
-        System.out.println("\n\nAverage turnaround time is "+ cpt/m);
-        System.out.println("Average waiting time is : "+cpt1/m);
-    }
     public static void Calculate1_2_3(Vector <OPS> T)
     {
 
@@ -67,6 +31,44 @@ public class Main
             T.get(i).setWait(T.get(i).GetTA()-T.get(i).GetBurst_Time());
             if(T.get(i).GetWait() <0) T.get(i).setWait(0);
         }
+    }
+
+    public static void Print(Vector <OPS> T)
+    {
+        float cpt1 = 0;
+        int cpt =0;
+        float m = T.size();
+        System.out.println("Process | Arrival |  Burst       | Start | Wait | Finish | TA");
+        for(int i = 0;i<m;i++)
+        {
+            System.out.println(T.get(i).GetProcess() +"         "+T.get(i).GetArrival()  +
+                    "           "+ T.get(i).GetBurst_Time() +"           " + T.get(i).GetStart()+"        "
+                    +T.get(i).GetWait()+"      "+T.get(i).GetFinish()+"      "+T.get(i).GetTA()  );
+            cpt += T.get(i).GetTA();
+            cpt1+= T.get(i).GetWait();
+        }
+        System.out.println("\n\nAverage turnaround time is "+ cpt/m);
+        System.out.println("Average waiting time is : "+cpt1/m);
+    }
+    
+        public static Vector <OPS> init_T(Vector <OPS> T)
+    {
+        int nbProcess = 0;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the Number of Processes : ");
+        nbProcess = sc.nextInt();
+
+        for(int i = 0;i<nbProcess;i++)
+        {
+            OPS p = new OPS();
+            p.setProcess(i);
+            System.out.print("Enter Process "+i+"'s Arrival Time : ");
+            p.setArrival(sc.nextInt());
+            System.out.print("Enter Process "+i+"'s Burst Time : ");
+            p.setBurst_Time(sc.nextInt());
+            T.insertElementAt(p,i);
+        }
+        return T;
     }
 
     public static Vector <OPS> T_orderFCFS(Vector <OPS> T)
